@@ -1,5 +1,6 @@
 import React, {useState, setShow } from 'react'
 import {Modal} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function RemoveDialog() {
      const [show, setShow] = useState(false);
