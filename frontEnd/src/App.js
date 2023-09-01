@@ -3,7 +3,7 @@ import CustomHeader from "./components/CustomHeader.jsx";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import GameListings from "./components/GameListings";
-import AddButton from "./components/AddButton";
+import AddGameReview from "./components/AddGameReview";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <div className="listing">
          <GameListings/> </div>
       <div className="action">
-        <AddButton/>
+        <AddGameReview/>
       </div>
     </div>
   );
