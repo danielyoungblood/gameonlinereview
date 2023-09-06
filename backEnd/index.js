@@ -16,3 +16,8 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/games", require("./controllers/games"));
+
+app.listen(process.env.PORT, (err) => {
+    if (err) console.log("error in server set up: " + err )
+  console.log( `start server, Listening on ${process.env.PORT}`);
+});
