@@ -1,9 +1,12 @@
+const db = require("../model/index.js");
+
 const router = require("express").Router();
 
 // returns all game reviews
-router.get("/", (req, res) => {
-  console.log("get all games")
- res.json({ message: "return all game reviews" });
+router.get("/", async (req, res) => {
+  const items = await knex("gameReviews").select();
+  console.log("get all games");
+  res.json(JSON.stringify(items));
 });
 
 //return a single game review by id
