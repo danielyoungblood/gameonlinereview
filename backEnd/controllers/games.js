@@ -4,9 +4,17 @@ const router = require("express").Router();
 
 // returns all game reviews
 router.get("/", async (req, res) => {
-  const items = await knex("gameReviews").select();
   console.log("get all games");
-  res.json(JSON.stringify(items));
+  db.select("*")
+    .from("gameReviews")
+    .then((data) => {
+      console.log(data);
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({ Error: "error occurred" });
+    });
 });
 
 //return a single game review by id
@@ -30,7 +38,21 @@ router.delete("/:id", (req, res) => {
 //add one single game review by id
 router.post("/", (req, res) => {
   console.log("add one game review");
-  res.json({ message: "post one game review" });
+  const { gameName, gameUrl, gameRating, gameId } = req.body;
+  db("gameReviews")
+    .insert({
+      name: gameName,
+      url: gameUrl,
+      rating: gameRating,
+      id: gameId,
+    })
+    .then(() => {
+      console.log("gameRevies added");
+      return res.json({ msg: "gameReviews added" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 module.exports = router;

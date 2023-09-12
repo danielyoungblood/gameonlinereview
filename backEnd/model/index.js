@@ -11,4 +11,4 @@ const db = require("knex")({
   },
 });
 
-export default db;
+module.exports = db;
