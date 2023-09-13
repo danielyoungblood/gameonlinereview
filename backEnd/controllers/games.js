@@ -20,12 +20,40 @@ router.get("/", async (req, res) => {
 //return a single game review by id
 router.get("/:id", (req, res) => {
   console.log("return game");
-  res.json({ message: "return one game review" });
+  //variable name is id,
+  //equal sign means we are having the variable whose name is id having
+  //the value of what is in the req.params.id variable
+  const id = req.params.id;
+  console.log("id: " + id);
+  db.select("*")
+    .from("gameReviews")
+    .where("id", "=", id)
+    .then((data) => {
+      console.log(data);
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 //update single game review by id
 router.put("/:id", (req, res) => {
   console.log("update game");
+  db("gameReviews")
+    .where("id", "=", id)
+    .update({ movie_name: "Goldeneye" })
+    .then(() => {
+      console.log("update gameReviews");
+      return res.json({ msg: "Update gameReviews" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  //db is the name that refers to the postgres software,
+  //postgres is the database software
+  //gameReviews is the name of the database using  postgres software
+
   res.json({ message: "update one game review" });
 });
 
