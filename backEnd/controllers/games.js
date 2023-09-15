@@ -40,27 +40,41 @@ router.get("/:id", (req, res) => {
 //update single game review by id
 router.put("/:id", (req, res) => {
   console.log("update game");
+  const changes = req.body;
+  const id = req.params.id;
   db("gameReviews")
     .where("id", "=", id)
-    .update({ movie_name: "Goldeneye" })
+    .update(changes)
     .then(() => {
       console.log("update gameReviews");
       return res.json({ msg: "Update gameReviews" });
     })
     .catch((err) => {
       console.log(err);
+      return res.json({ msg: "error occured" });
     });
   //db is the name that refers to the postgres software,
   //postgres is the database software
   //gameReviews is the name of the database using  postgres software
-
-  res.json({ message: "update one game review" });
 });
 
 //delete single game review by id
 router.delete("/:id", (req, res) => {
   console.log("delete game review");
-  res.json({ message: "delete one game review" });
+  const id = req.params.id;
+  const gameIdToDelete = Number(id);
+  console.log(gameIdToDelete);
+  db("gameReviews")
+    .where("id", "=", gameIdToDelete)
+    .del()
+    .then(() => {
+      console.log("game review deleted");
+      return res.json({ msg: "game review deleted" });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.json({ msg: "err occured" });
+    });
 });
 
 //add one single game review by id
