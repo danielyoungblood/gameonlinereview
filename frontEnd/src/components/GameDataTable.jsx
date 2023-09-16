@@ -9,21 +9,19 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
 import RemoveDialog from "./RemoveDialog";
 
-const rows = [
-  createData('Frogger', "www.farmer.net", 5),
-  createData('pacman', "www.pacman.net", 4),
-  createData('snake', "www.snakes.net", 3),
-];
+var rows = {};
+var rowsArray = [];
+fetch("http://localhost:81/games")
+      .then(response => {
+        rows = response.json()
+      });
 
+rowsArray = Object.entries(rows).forEach(([key, value]) => rowsArray.push({[key]: value}));
 
   const handleClickOpen = () => {
     return <RemoveDialog/>
     
   };
-
-function createData(name, url, rating) {
-  return { name, url, rating };
-}
 
 export default function GameDataTable() {
   return (
@@ -38,7 +36,7 @@ export default function GameDataTable() {
           </TableRow>
         </TableHead >
         <TableBody>
-          {rows.map((row) => (
+          {rowsArray.map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
