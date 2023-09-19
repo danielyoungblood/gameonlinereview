@@ -15,7 +15,7 @@ export default function CustomHeader() {
       <MDBCol sm='8' className='mb-3 mb-md-0'>
         <MDBCard>
           <MDBCardBody text='dark'>
-            <MDBCardTitle>Online Game Reviewer</MDBCardTitle>
+            <MDBCardTitle>Online Game Reviews</MDBCardTitle>
                   </MDBCardBody>
         </MDBCard>
       </MDBCol>

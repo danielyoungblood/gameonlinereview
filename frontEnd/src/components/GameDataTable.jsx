@@ -9,14 +9,8 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
 import RemoveDialog from "./RemoveDialog";
 
-var rows = {};
-var rowsArray = [];
-fetch("http://localhost:81/games")
-      .then(response => {
-        rows = response.json()
-      });
-
-rowsArray = Object.entries(rows).forEach(([key, value]) => rowsArray.push({[key]: value}));
+const response = await fetch('http://127.0.0.1:81/games');
+var rows = await response.json();
 
   const handleClickOpen = () => {
     return <RemoveDialog/>
@@ -36,7 +30,7 @@ export default function GameDataTable() {
           </TableRow>
         </TableHead >
         <TableBody>
-          {rowsArray.map((row) => (
+          {rows.map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

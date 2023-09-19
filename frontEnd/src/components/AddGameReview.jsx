@@ -11,16 +11,16 @@ import TextField from '@mui/material/TextField';
 export default function AddGameReview() {
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  function handleClickOpen() {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  function handleClose() {
     setOpen(false);
   };
 
   return (
-    <div>  <MDBBtn onClick={handleClickOpen}>Add Online Game Review</MDBBtn>
+    <div>  <MDBBtn onClick={handleClickOpen}>Add an Online Game Review</MDBBtn>
       <Dialog
         open={open}
         onClose={handleClose}
