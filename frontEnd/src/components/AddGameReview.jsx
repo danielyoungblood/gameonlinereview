@@ -26,23 +26,25 @@ export default function AddGameReview() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-      >
+
+      ><form method="POST" action="http://localhost:81/games">
         <DialogTitle id="alert-dialog-title">
           {"add new online game review"}
         </DialogTitle>
         <DialogContent>
-            <TextField id="outlined-basic" label="name" variant="outlined" margin="normal" />
+          <input id="name" label="name" variant="outlined" margin="normal" />
             <br></br>
             <TextField id="outlined-basic" label="url" variant="outlined" margin="normal"/>
             <br></br>
             <TextField id="outlined-basic" label="rating" variant="outlined" margin="normal"/>
-        </DialogContent>
+          </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} autoFocus>save</Button>
+          <Button type="submit" onClick={handleClose} autoFocus>save</Button>
           <Button onClick={handleClose}>
             cancel
           </Button>
         </DialogActions>
+        </form>
       </Dialog>
     </div>
   );
