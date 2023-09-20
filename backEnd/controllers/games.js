@@ -80,6 +80,10 @@ router.delete("/:id", (req, res) => {
 //add one single game review by id
 router.post("/", (req, res) => {
   console.log("add one game review");
+  console.log("req.body: " + req.body);
+  const { name } = req.body;
+  console.log("name: " + name);
+  /*
   const { gameName, gameUrl, gameRating, gameId } = req.body;
   db("gameReviews")
     .insert({
@@ -95,6 +99,7 @@ router.post("/", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+    */
 });
 
 module.exports = router;
