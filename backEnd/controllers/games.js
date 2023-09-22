@@ -78,28 +78,31 @@ router.delete("/:id", (req, res) => {
 });
 
 //add one single game review by id
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   console.log("add one game review");
+  const { gameName, gameUrl, gameRating } = req.body;
   console.log("req.body: " + req.body);
   const { name } = req.body;
   console.log("name: " + name);
-  /*
-  const { gameName, gameUrl, gameRating, gameId } = req.body;
+  const maxIdQuery = await db("gameReviews")
+    .select("id")
+    .orderByRaw("id DESC")
+    .first();
+  var maxId = maxIdQuery.id;
   db("gameReviews")
     .insert({
       name: gameName,
       url: gameUrl,
       rating: gameRating,
-      id: gameId,
+      id: parseInt(maxId) + 1,
     })
     .then(() => {
       console.log("gameRevies added");
-      return res.json({ msg: "gameReviews added" });
+      return res.redirect("http://localhost:3000/"); //this actual sets the url in the address bar on the client browser to this
     })
     .catch((err) => {
       console.log(err);
     });
-    */
 });
 
 module.exports = router;
