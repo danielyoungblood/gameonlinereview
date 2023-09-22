@@ -32,11 +32,11 @@ export default function AddGameReview() {
           {"add new online game review"}
         </DialogTitle>
         <DialogContent>
-          <input id="name" label="name" variant="outlined" margin="normal" />
+          <TextField name="gameName" id="name" label="name" variant="outlined" margin="normal" />
             <br></br>
-            <TextField id="outlined-basic" label="url" variant="outlined" margin="normal"/>
+            <TextField name="gameUrl" id="outlined-basic" label="url" variant="outlined" margin="normal"/>
             <br></br>
-            <TextField id="outlined-basic" label="rating" variant="outlined" margin="normal"/>
+            <TextField name="gameRating" id="outlined-basic" label="rating" variant="outlined" margin="normal"/>
           </DialogContent>
         <DialogActions>
           <Button type="submit" onClick={handleClose} autoFocus>save</Button>

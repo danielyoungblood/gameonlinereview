@@ -12,9 +12,9 @@ import RemoveDialog from "./RemoveDialog";
 const response = await fetch('http://127.0.0.1:81/games');
 var rows = await response.json();
 
-  const handleClickOpen = () => {
-    return <RemoveDialog/>
-    
+  async function handleClickOpen(id) {
+   await fetch ("http://127.0.0.1:81/games/" + id, { method: 'DELETE' })
+   console.log("http://127.0.0.1:81/games/" + id)
   };
 
 export default function GameDataTable() {
@@ -41,7 +41,7 @@ export default function GameDataTable() {
               <TableCell align="left">{row.url}</TableCell>
               <TableCell align="center">{row.rating}</TableCell>
               <TableCell align="right"><Button variant="contained">edit</Button></TableCell>
-              <TableCell align="left"><Button onClick={handleClickOpen} variant="contained">remove</Button></TableCell>
+              <TableCell align="left"><Button onClick={() => handleClickOpen(row.id)} variant="contained">remove</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
