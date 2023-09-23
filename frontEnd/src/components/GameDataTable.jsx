@@ -7,18 +7,35 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
-import RemoveDialog from "./RemoveDialog";
+import EditGameReview from './EditGameReview';
 
 const response = await fetch('http://127.0.0.1:81/games');
 var rows = await response.json();
 
-  async function handleClickOpen(id) {
+  
+
+export default function GameDataTable() {
+  const [open, setOpen] = React.useState(false) 
+  const [selectedValue, setSelectedValue] = React.useState(0);
+
+async function handleClickRemove(id) {
    await fetch ("http://127.0.0.1:81/games/" + id, { method: 'DELETE' })
    console.log("http://127.0.0.1:81/games/" + id)
   };
 
-export default function GameDataTable() {
-  return (
+  async function handleClickEdit(id) {
+    //alert(id);
+    setSelectedValue(id);
+    setOpen(true);
+   //await fetch ("http://127.0.0.1:81/games/" + id, { method: 'PUT' })
+   console.log("http://127.0.0.1:81/games/" + id)
+  };
+
+  function handleClose(){
+    setOpen(false);
+  };
+
+   return (
     <TableContainer component={Paper}>
       <Table width="100" aria-label="simple table">
         <TableHead>
@@ -40,11 +57,16 @@ export default function GameDataTable() {
               </TableCell>
               <TableCell align="left">{row.url}</TableCell>
               <TableCell align="center">{row.rating}</TableCell>
-              <TableCell align="right"><Button variant="contained">edit</Button></TableCell>
-              <TableCell align="left"><Button onClick={() => handleClickOpen(row.id)} variant="contained">remove</Button></TableCell>
+              <TableCell align="right"><Button onClick={() => handleClickEdit(row.id)} variant="contained">edit</Button></TableCell>
+              <TableCell align="left"><Button onClick={() => handleClickRemove(row.id)} variant="contained">remove</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
+        <EditGameReview
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
       </Table>
     </TableContainer>
   );
