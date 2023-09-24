@@ -17,15 +17,17 @@ var rows = await response.json();
 export default function GameDataTable() {
   const [open, setOpen] = React.useState(false) 
   const [selectedValue, setSelectedValue] = React.useState(0);
+  const [selectedName, setSelectedName] = React.useState("");
 
 async function handleClickRemove(id) {
    await fetch ("http://127.0.0.1:81/games/" + id, { method: 'DELETE' })
    console.log("http://127.0.0.1:81/games/" + id)
   };
 
-  async function handleClickEdit(id) {
+  async function handleClickEdit(id, name) {
     //alert(id);
-    setSelectedValue(id);
+    setSelectedValue(id)
+    setSelectedName(name);
     setOpen(true);
    //await fetch ("http://127.0.0.1:81/games/" + id, { method: 'PUT' })
    console.log("http://127.0.0.1:81/games/" + id)
@@ -49,7 +51,7 @@ async function handleClickRemove(id) {
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
@@ -57,13 +59,14 @@ async function handleClickRemove(id) {
               </TableCell>
               <TableCell align="left">{row.url}</TableCell>
               <TableCell align="center">{row.rating}</TableCell>
-              <TableCell align="right"><Button onClick={() => handleClickEdit(row.id)} variant="contained">edit</Button></TableCell>
+              <TableCell align="right"><Button onClick={() => handleClickEdit(row.id, row.name)} variant="contained">edit</Button></TableCell>
               <TableCell align="left"><Button onClick={() => handleClickRemove(row.id)} variant="contained">remove</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
         <EditGameReview
         selectedValue={selectedValue}
+        selectedName={selectedName}
         open={open}
         onClose={handleClose}
       />

@@ -8,8 +8,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { MDBBtn} from 'mdb-react-ui-kit';
 import TextField from '@mui/material/TextField';
 
+
+
 export default function EditGameReview(props) {
-  const {selectedValue, open} = props
+  const {selectedValue, selectedName, open} = props
 
   function handleClickOpen() {
   };
@@ -30,8 +32,7 @@ export default function EditGameReview(props) {
           {"edit new online game review"}
         </DialogTitle>
         <DialogContent>
-            <label>id: {selectedValue}</label>
-          <TextField name="gameName" id="name" label="name" variant="outlined" margin="normal" />
+            <TextField value={selectedName} name="gameName" id="name" label={selectedName} variant="outlined" margin="normal" />
             <br></br>
             <TextField name="gameUrl" id="outlined-basic" label="url" variant="outlined" margin="normal"/>
             <br></br>
