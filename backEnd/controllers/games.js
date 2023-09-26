@@ -86,7 +86,13 @@ router.post("/", async (req, res) => {
     .orderByRaw("id DESC")
     .first();
     console.log(JSON.stringify(maxIdQuery));
-  var maxId = maxIdQuery.id;
+  if (maxIdQuery === undefined) {
+    maxId = "0";
+    console.log("No data exists, using initial id of 0");
+  } else {
+    maxId = maxIdQuery.id;
+    console.log("maxIdQuery : " + JSON.stringify(maxIdQuery));
+  }
   db("gameReviews")
     .insert({
       name: gameName,
