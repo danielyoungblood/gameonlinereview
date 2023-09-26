@@ -11,12 +11,14 @@ import TextField from '@mui/material/TextField';
 
 
 export default function EditGameReview(props) {
-  const {selectedValue, selectedName, open} = props
+  const {selectedValue, selectedName, selectedUrl, selectedRating, open, onClose} = props
 
-  function handleClickOpen() {
+    function handleClose() {
+      onClose()
   };
 
-  function handleClose() {
+  function handleCancel() {
+    onClose()
   };
 
   return (
@@ -27,20 +29,20 @@ export default function EditGameReview(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
 
-      ><form method="POST" action="http://localhost:81/games">
+      ><form method="POST" action={"http://localhost:81/games/"+selectedValue}>
         <DialogTitle id="alert-dialog-title">
           {"edit new online game review"}
         </DialogTitle>
         <DialogContent>
-            <TextField value={selectedName} name="gameName" id="name" label={selectedName} variant="outlined" margin="normal" />
+            <TextField defaultValue={selectedName} name="name" id="name" label="game name" variant="outlined" margin="normal" />
             <br></br>
-            <TextField name="gameUrl" id="outlined-basic" label="url" variant="outlined" margin="normal"/>
+            <TextField defaultValue={selectedUrl} name="url" id="outlined-basic" label="game url" variant="outlined" margin="normal"/>
             <br></br>
-            <TextField name="gameRating" id="outlined-basic" label="rating" variant="outlined" margin="normal"/>
+            <TextField  defaultValue={selectedRating} name="rating" id="outlined-basic" label="game rating" variant="outlined" margin="normal"/>
           </DialogContent>
         <DialogActions>
           <Button type="submit" onClick={handleClose} autoFocus>save</Button>
-          <Button onClick={handleClose}>
+          <Button onClick={handleCancel}>
             cancel
           </Button>
         </DialogActions>

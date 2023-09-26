@@ -18,19 +18,23 @@ export default function GameDataTable() {
   const [open, setOpen] = React.useState(false) 
   const [selectedValue, setSelectedValue] = React.useState(0);
   const [selectedName, setSelectedName] = React.useState("");
+  const [selectedUrl, setSelectedUrl] = React.useState("");
+  const [selectedRating, setSelectedRating] = React.useState("");
 
 async function handleClickRemove(id) {
    await fetch ("http://127.0.0.1:81/games/" + id, { method: 'DELETE' })
    console.log("http://127.0.0.1:81/games/" + id)
   };
 
-  async function handleClickEdit(id, name) {
+  async function handleClickEdit(id, name, url, rating) {
     //alert(id);
     setSelectedValue(id)
     setSelectedName(name);
     setOpen(true);
-   //await fetch ("http://127.0.0.1:81/games/" + id, { method: 'PUT' })
-   console.log("http://127.0.0.1:81/games/" + id)
+    //await fetch ("http://127.0.0.1:81/games/" + id, { method: 'PUT' })
+    setSelectedUrl(url);
+    setSelectedRating(rating);
+    console.log("http://127.0.0.1:81/games/" + id)
   };
 
   function handleClose(){
@@ -59,7 +63,7 @@ async function handleClickRemove(id) {
               </TableCell>
               <TableCell align="left">{row.url}</TableCell>
               <TableCell align="center">{row.rating}</TableCell>
-              <TableCell align="right"><Button onClick={() => handleClickEdit(row.id, row.name)} variant="contained">edit</Button></TableCell>
+              <TableCell align="right"><Button onClick={() => handleClickEdit(row.id, row.name, row.url, row.rating)} variant="contained">edit</Button></TableCell>
               <TableCell align="left"><Button onClick={() => handleClickRemove(row.id)} variant="contained">remove</Button></TableCell>
             </TableRow>
           ))}
@@ -67,6 +71,8 @@ async function handleClickRemove(id) {
         <EditGameReview
         selectedValue={selectedValue}
         selectedName={selectedName}
+        selectedUrl={selectedUrl}
+        selectedRating={selectedRating}
         open={open}
         onClose={handleClose}
       />
