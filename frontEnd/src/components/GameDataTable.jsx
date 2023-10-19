@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
 import EditGameReview from './EditGameReview';
 
-const response = await fetch('http://127.0.0.1:81/games');
+const response = await fetch('https://onlinegamereviewsapi-dd1f095c2fa8.herokuapp.com/games');
 var rows = await response.json();
 
   
@@ -22,19 +22,17 @@ export default function GameDataTable() {
   const [selectedRating, setSelectedRating] = React.useState("");
 
 async function handleClickRemove(id) {
-   await fetch ("http://127.0.0.1:81/games/" + id, { method: 'DELETE' })
-   console.log("http://127.0.0.1:81/games/" + id)
+   await fetch ("https://onlinegamereviewsapi-dd1f095c2fa8.herokuapp.com/games/" + id, { method: 'DELETE' })
+   console.log("https://onlinegamereviewsapi-dd1f095c2fa8.herokuapp.com/games/" + id)
   };
 
   async function handleClickEdit(id, name, url, rating) {
-    //alert(id);
     setSelectedValue(id)
     setSelectedName(name);
     setOpen(true);
-    //await fetch ("http://127.0.0.1:81/games/" + id, { method: 'PUT' })
     setSelectedUrl(url);
     setSelectedRating(rating);
-    console.log("http://127.0.0.1:81/games/" + id)
+    console.log("https://onlinegamereviewsapi-dd1f095c2fa8.herokuapp.com/games/" + id)
   };
 
   function handleClose(){

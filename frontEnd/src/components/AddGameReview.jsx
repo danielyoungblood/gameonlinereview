@@ -27,7 +27,7 @@ export default function AddGameReview() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
 
-      ><form method="POST" action="http://localhost:81/games">
+      ><form method="POST" action="https://onlinegamereviewsapi-dd1f095c2fa8.herokuapp.com/games">
         <DialogTitle id="alert-dialog-title">
           {"add new online game review"}
         </DialogTitle>
