@@ -23,7 +23,7 @@ frontEnd folder:
 ### deployment
 
 ## frontend
-https://danielyoungblood.github.io/onlineSubscriptions/
+https://danielyoungblood.github.io/gameonlinereview/
 
 ## backend
-https://onlinesubscriptionsapi-8fec69ac21bc.herokuapp.com/subscriptions
+https://onlinegamereviewsapi-dd1f095c2fa8.herokuapp.com/games
