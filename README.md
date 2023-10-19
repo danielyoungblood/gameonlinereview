@@ -21,3 +21,9 @@ frontEnd folder:
 \*contains react code that actually produces the webpages and gets the data in the api in the backEnd
 
 ### deployment
+
+## frontend
+https://danielyoungblood.github.io/onlineSubscriptions/
+
+## backend
+https://onlinesubscriptionsapi-8fec69ac21bc.herokuapp.com/subscriptions
