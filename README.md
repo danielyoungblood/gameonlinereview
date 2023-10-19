@@ -19,3 +19,5 @@ frontEnd folder:
 \*produces what is actually seen in the browser
 
 \*contains react code that actually produces the webpages and gets the data in the api in the backEnd
+
+### deployment
